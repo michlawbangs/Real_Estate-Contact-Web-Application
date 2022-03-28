@@ -1,3 +1,35 @@
+# Real-Estate Contact Web Application
+## Display list of properties(Rent, For-Sale) allow user to view property and interested make contact to the agent responsible for the property
+
+
+
+
+![header](https://user-images.githubusercontent.com/44992267/160495550-f348d601-a22c-4806-9b47-aa83e4771bf4.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
