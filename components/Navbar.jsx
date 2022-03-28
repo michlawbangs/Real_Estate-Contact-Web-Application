@@ -6,15 +6,23 @@ import { FcMenu, FcHome, FcAbout } from 'react-icons/fc';
 import { BsSearch } from 'react-icons/bs';
 import { FiKey } from 'react-icons/fi';
 
+import { motion } from 'framer-motion'
+import { navbarAnimation } from '../utils/Animation'
+
+const MotionBox = motion(Box);
 
 function Navbar() {
   return (
-    <Box p='10px 0'>
+    <MotionBox
+    variants={navbarAnimation}
+    transition={{ delay: 0.1 }}
+    p='10px 0'
+       >
         <Flex justifyContent='space-between' alignItems='center' maxWidth='85vw' m='0 auto'>
             <Flex alignItems={'center'} color='#296A87'>
                 <FaHome size={'2rem'}/>
                 <Link href='/' passHref >
-                    <Button as="a" variant="ghost" aria-label="Home" fontSize='3xl'  fontWeight='550' padding='5px' >
+                    <Button as="a" variant="ghost" aria-label="Home" fontSize='3xl'  fontWeight='550' padding='5px'>
                         Homes
                     </Button>
                 </Link>
@@ -42,9 +50,6 @@ function Navbar() {
                     <Menu>
                         <MenuButton as={IconButton} icon={<FcMenu />}  variant='outline' color='red.400' />
                         <MenuList>
-                        <Link href='/' passHref>
-                            <MenuItem icon={<FcHome />}>Home</MenuItem>
-                        </Link>
                         <Link href='/search' passHref>
                             <MenuItem icon={<BsSearch />}>Search</MenuItem>
                         </Link>
@@ -59,7 +64,7 @@ function Navbar() {
                 </Box>
             </Flex>
         </Flex>
-    </Box>
+    </MotionBox>
   )
 }
 

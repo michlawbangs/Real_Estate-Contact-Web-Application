@@ -1,72 +1,22 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Flex, Box, Text, Button, TabPanels, TabPanel, Tabs, TabList, Tab, Grid, GridItem } from '@chakra-ui/react';
-// import { motion } from 'framer-motion'
+import { Box, Text, TabPanels, TabPanel, Tabs, TabList, Tab, Grid, GridItem } from '@chakra-ui/react';
+import { motion } from 'framer-motion'
+// import { useRef, useEffect, useState } from "react";
 
-import { Header, About, Steps, FeaturedProperty, Property, Benefits, Contact, Agents } from "../components"
+import { Header, About, Steps, Benefits, Contact } from "../sections"
+import { PropertyBanner, Property, ScrollToTop } from "../components"
 import { baseUrl, fetchApi } from '../utils/fetchApi';
 
-// Properties functional component
-export const BannerProperty = ({ /*purpose,*/ title, desc, buttonText, linkName, imageUrl }) => (
-  <Box>
-    <Flex 
-    flexWrap='wrap' 
-    /*justifyContent='center'*/ 
-    alignItems='center' 
-    m='1.5rem 0'
-    >
-      <Box 
-      mr='20px' 
-      mb='15px'
-      >
-        <Image 
-        src={imageUrl} 
-        width={450} 
-        height={270} 
-        alt='property_img' 
-        className='home_img' 
-        />
-      </Box>
-      <Box>
-        <Text 
-        fontSize='1.8rem' 
-        fontWeight='550' 
-        width='20rem' 
-        lineHeight={1.4}
-        letterSpacing='1.2px' 
-        m='0'
-        >
-          {title}
-        </Text>
-        <Text 
-        fontSize='1.3rem'  
-        color='gray.700' 
-        width='20rem' 
-        lineHeight={1.4} 
-        letterSpacing='1.2px' 
-        m='20px 0'
-        >
-          {desc}
-        </Text>
-        <Button 
-        fontSize='1rem' 
-        bg="#DEDEDE" 
-        color="black" 
-        border={'none'} 
-        borderRadius='3px' 
-        p='8px 15px' 
-        fontWeight='550'
-        >
-          <Link href={linkName}><a>{buttonText}</a></Link>
-        </Button>
-      </Box>
-    </Flex>
-  </Box>
-)
 
+import { cardAnimation1 } from '../utils/Animation';
+import { useScroll } from '../components/useScroll'
+
+// const MotionBox = motion(Box);
+// const MotionFlex = motion(Flex);
+const MotionGridItem = motion(GridItem);
 
 export default function Home({ forSaleProperties, forRentProperties }) {
-  // console.log(forSaleProperties, forRentProperties);
+  const [element, controls] = useScroll();
+
   return (
     <Box>
       {/* Header Component */}
@@ -80,37 +30,9 @@ export default function Home({ forSaleProperties, forRentProperties }) {
 
           {/* Steps| How It Works Component */}
           <Steps />
-
-          {/* Featured Properties Component */}
-          <Box m='5rem 0'>
-            <Text 
-            fontSize='1.1rem' 
-            fontWeight='bold' 
-            textTransform='uppercase' 
-            mb='3rem'
-            >
-                Featured Properties
-            </Text>
-            <Grid 
-            templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} 
-            gap={4} 
-            mt='20px'
-            >
-              {forSaleProperties.map((property) => 
-                <GridItem key={property.id} >
-                  <FeaturedProperty property={property} />
-                </GridItem>
-              )}
-            </Grid>
-            <Flex justifyContent='center' alignItems='center' mt='1rem'>
-              <Box className='slide_property'></Box>
-              <Box className='slide_property'></Box>
-            </Flex>
-            
-          </Box>
-
+          
           {/* Property Components */}
-          <Box className="properties" margin='5rem 0'>
+          <Box className="properties" margin='5rem 0' ref={element}>
             <Text 
             fontSize='1.1rem' 
             fontWeight='bold' 
@@ -155,35 +77,33 @@ export default function Home({ forSaleProperties, forRentProperties }) {
               </TabList>
               <TabPanels>
                 <TabPanel padding={0}>
-                  <BannerProperty
-                    // purpose='RENT A HOME'
+                  <PropertyBanner
                     title='Rental Homes for Everyone'
                     desc=' Explore from Apartments, building floors, villas and more'
                     buttonText='Explore Rental Homes'
                     linkName='/search?purpose=for-rent'
                     imageUrl='https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4'
-                    // imageUrl='/../public/Images/rent.png'
                   />
                   <Grid 
                   templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} 
                   gap={4} mt='1rem'
                   >
                     {forRentProperties.map((property) =>
-                      <GridItem key={property.id}>
+                      <GridItem
+                      key={property.id}
+                      >
                         <Property property={property} />
                       </GridItem>
                     )}
                   </Grid>
                 </TabPanel>
                 <TabPanel padding={0}>
-                  <BannerProperty
-                    // purpose='RENT A HOME'
+                  <PropertyBanner
                     title='Find, Buy & Own Your Dream Homes'
                     desc=' Explore from Apartments, building floors, villas and more'
                     buttonText='Explore Homes For Sale'
                     linkName='/search?purpose=for-sale'
                     imageUrl='https://bayut-production.s3.eu-central-1.amazonaws.com/image/110993385/6a070e8e1bae4f7d8c1429bc303d2008'
-                    // imageUrl='/../public/Images/rent.png'
                   />
                   <Grid 
                   templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} 
@@ -191,7 +111,9 @@ export default function Home({ forSaleProperties, forRentProperties }) {
                   mt='1rem'
                   >
                     {forSaleProperties.map((property) => 
-                      <GridItem key={property.id}>
+                      <GridItem
+                      key={property.id}
+                      >
                         <Property property={property} />
                       </GridItem>
                     )}
@@ -204,11 +126,11 @@ export default function Home({ forSaleProperties, forRentProperties }) {
           {/* Benefit Component */}
           <Benefits />
 
-          {/* Agents Component */}
-          <Agents />
-
           {/* Contact Component */}
           <Contact />
+
+          {/* ScrollToTop Component */}
+          <ScrollToTop />
         </Box>
       </Box>
     </Box>

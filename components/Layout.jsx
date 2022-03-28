@@ -1,11 +1,13 @@
 import React from 'react';
 import  Head  from 'next/head'
 import { Box } from '@chakra-ui/react';
+import { motion } from 'framer-motion'
 
 
 import Navbar from './Navbar';
 import Footer from './Footer';
 
+const MotionBox = motion(Box);
 
 function Layout({ children }) {
   return (
@@ -13,18 +15,18 @@ function Layout({ children }) {
       <Head>
         <title>Homes</title>
       </Head>
-      <Box>
-         <header className='navbar'>
-            <Navbar />
-            {/* Navbar */}
-         </header>
-         <main>
-            {children}
-         </main>
-         <footer>
-            <Footer />
-         </footer>
-      </Box>
+      <MotionBox initial="hidden" animate="show">
+        <header className='navbar'>
+          <Navbar />
+          {/* Navbar */}
+        </header>
+        <main>
+          {children}
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </MotionBox>
     </>
   )
 }

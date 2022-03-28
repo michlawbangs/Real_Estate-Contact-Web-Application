@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 #nprogress .bar {
     height: 5px;
 }
@@ -101,6 +105,7 @@ right: -2rem;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border: none;
+    pointer-events: none;
 }
 
 
@@ -115,6 +120,26 @@ right: -2rem;
     border-radius: 50px;
     background-color: #e2e7e9;
     border: 1px solid black;
+}
+
+.scrollToTop {
+    background-color: #296A87;
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+
+.scrollToTop:hover {
+    background-color: #091920;
 }
   
   
