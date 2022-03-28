@@ -7,7 +7,7 @@ import millify from 'millify';
 import { useToast } from '@chakra-ui/react'
 
 import { baseUrl, fetchApi } from '../../utils/fetchApi';
-import ImageScrollbar from '../../components/ImageScrollbar';
+import { ImageScrollbar } from '../../components/ImageScrollbar';
 
 // Destructuring
 const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title, baths, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos, contactName, phoneNumber, location } }) => {
