@@ -15,7 +15,7 @@ import hero_img from '../assets/images/hero_img.png';
 function Header() {
     const [element, controls] = useScroll();
     return (
-        <Box ref={element}>
+        <Box ref={element} color='white'>
             <Flex 
             alignItems={['center' ,'center' ,'flex-start','flex-start']} 
             width='85vw' m='0 auto' 
@@ -64,7 +64,7 @@ function Header() {
                         <Button className='hero_btn' 
                         colorScheme='#296A87' fontSize='1.1rem'
                         >
-                            <Link href='/'>Get In Touch</Link>
+                            <Link href='#contact_' passHref>Get In Touch</Link>
                         </Button>
                     </MotionBox>
                 </MotionBox>

@@ -30,7 +30,7 @@ function Contact() {
     }
     
     return (
-        <Box className="contact" margin='5rem 0 0 0'>
+        <Box className="contact" id='contact_' margin='5rem 0 0 0'>
             <MotionText
             animate={controls}
             variants={reveal}

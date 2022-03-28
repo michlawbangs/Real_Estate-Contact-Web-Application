@@ -20,7 +20,7 @@ html {
 }
 
 .header {
-    background-image: url('../assets/images/bg.png');
+    background-color: #032333;
     max-width: 100vw;
     background-repeat: no-repeat;
     background-position: center;
